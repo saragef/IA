@@ -12,12 +12,15 @@ s([X,Y],[X,H]) :- X < 6,Y < 10, H is Y + 1, muda_(X,H).
 %como ir para a esquerda sem passar pela direita.
 s([X,Y],[X,H]) :- X < 6 , Y > 1 , H is Y - 1, muda_(X,H).
 
-%Aqui dizemos onde esta o obstaculo caso esteja em uma coluna onde tenha o elevador, temos que tirar a variavel anonima e por uma variavel, para depois fazer a diferença. EX: outro(X,1) :- X =\= 3. dessa forma ele nao vai passar em (3,1), logo não vai poder pegar esse elevador no 3 andar. 
+%Aqui dizemos onde esta o obstaculo caso esteja em uma coluna onde tenha o elevador, 
+temos que tirar a variavel anonima e por uma variavel, para depois fazer a diferença. 
+EX: outro(X,1) :- X =\= 3. dessa forma ele nao vai passar em (3,1), logo não vai poder pegar esse elevador no 3 andar. 
 outro(_,1).
 outro(_,5).
 outro(_,10).
 
-%Aqui ja mudamos o valor do Y, ja temos o exemplo abaixo, ele tem a mesma funcionalidade do outro, contudo foi necessario fazer o "muda" pq se nao poderia dar bugg,
+%Aqui ja mudamos o valor do Y, ja temos o exemplo abaixo, ele tem a mesma funcionalidade do outro, 
+contudo foi necessario fazer o "muda" pq se nao poderia dar bugg,
 %podendo ter duas verdades, ou verdades no momento errado.
 muda_(1,_).
 muda_(2,_).
@@ -34,7 +37,8 @@ metas([[2,3],[1,1],[2,2],[1,1]]).
 
 meta(M1,Estado) :-  verdade(M1,Estado).
 
-%essa linha abaixo é necessaria para fazer a comparação entre as filas, pois do modo que o prof passou so comparava um item por vez, nao uma lista.
+%essa linha abaixo é necessaria para fazer a comparação entre as filas, 
+pois do modo que o prof passou so comparava um item por vez, nao uma lista.
 verdade([[X|Cauda]|_],[X|Rim]) :- Cauda == Rim.
 
 pertence(Elem,[Elem|_]).
@@ -79,8 +83,12 @@ not(pertence(Sucessor,Restri)),
 		estende(_,[],_).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%Estavamos com o problema de poder ter so um objetivo por execução do programa, entao fiz essa função abaixo, onde botamos os objetivos no arquivo mesmo,ele chama
-% e faz a pesquisa com o primeiro objetivo da lista, depois em "vem(M1,M2)" ele tira a cabeça e envia a cauda para a proxima chamada, "tira2(M1,Y)" ja faz o contrario, ela tira a cabeça e vai para o lugar do "Inicial" para a procura começar de onde tinha parado na chamada anterior, "concatena" concatena as soluções e é onde esta um dos problemas, e depois so faz a chamada de novo.  
+%Estavamos com o problema de poder ter so um objetivo por execução do programa, entao fiz essa função abaixo, 
+onde botamos os objetivos no arquivo mesmo,ele chama
+% e faz a pesquisa com o primeiro objetivo da lista, depois em "vem(M1,M2)" ele tira a cabeça e envia 
+a cauda para a proxima chamada, "tira2(M1,Y)" ja faz o contrario, ela tira a cabeça e vai para o lugar 
+do "Inicial" para a procura começar de onde tinha parado na chamada anterior, "concatena" concatena 
+as soluções e é onde esta um dos problemas, e depois so faz a chamada de novo.  
 
 
 
